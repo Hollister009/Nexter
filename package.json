@@ -1,24 +1,29 @@
 {
-  "name": "Nexter",
+  "name": "nexter",
   "version": "1.0.0",
-  "description": "Nexter webpage",
+  "description": "Landing page for nexter",
   "main": "index.js",
+  "homepage": "https://hollister009.github.io/Nexter/",
   "scripts": {
-    "watch:sass": "node-sass sass/main.scss css/style.css -w",
-    "devserver": "live-server --browser=firefox",
+    "deploy": "gh-pages -d build",
+    "watch:sass": "node-sass -w scss/ -o dist/css/ --recursive",
+    "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
-    "compile:sass": "node-sass sass/main.scss css/style.comp.css",
-    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" css/style.comp.css -o css/style.prefix.css" ,
-    "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+    "compile:sass": "node-sass scss/ -o build/css/ --recursive",
+    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" build/css/*.css -o build/css/style.prefix.css",
+    "compress:css": "node-sass build/css/style.prefix.css build/css/style.min.css --output-style compressed",
     "build:css": "npm-run-all compile:sass prefix:css compress:css"
   },
-  "author": "Jonas",
-  "license": "ISC",
+  "author": "Andrew Zhukevych",
+  "license": "MIT",
   "devDependencies": {
+    "node-sass": "^4.9.2",
     "autoprefixer": "^7.1.4",
     "concat": "^1.0.3",
-    "node-sass": "^4.5.3",
-    "npm-run-all": "^4.1.1",
-    "postcss-cli": "^4.1.1"
+    "postcss-cli": "^4.1.1",
+    "npm-run-all": "^4.1.1"
+  },
+  "dependencies": {
+    "gh-pages": "^1.2.0"
   }
 }
